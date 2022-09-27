@@ -24,9 +24,7 @@ public class CuentaController {
 	@GetMapping
 	private ResponseEntity<List<Cuenta>>  getAll() {
 		List<Cuenta> cuentas=cuentaService.getAll();
-		if(cuentas==null) {
-			return ResponseEntity.noContent().build();
-		}
+
 		return ResponseEntity.ok(cuentas);
 	}
 	
@@ -38,7 +36,7 @@ public class CuentaController {
 		}
 		return ResponseEntity.ok(cuenta);
 	}
-	@PostMapping
+	@PostMapping()
 	private  ResponseEntity<Cuenta>  save(@RequestBody Cuenta cuenta) {
 		Cuenta cuentaGuardada=cuentaService.save(cuenta);
 		if(cuentaGuardada==null) {
@@ -46,4 +44,15 @@ public class CuentaController {
 		}
 		return ResponseEntity.ok(cuentaGuardada);
 	}
+	
+	@GetMapping("/byCliente/{idCliente}")
+	private ResponseEntity<List<Cuenta> >findByClienteId(@PathVariable("idCliente") int idCliente){
+		List<Cuenta> cuentas=cuentaService.findByClienteId(idCliente);
+
+		return ResponseEntity.ok(cuentas);
+	
+	}
+	
+	
+	
 }

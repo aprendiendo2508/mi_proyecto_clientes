@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nirma.clienteservice.entity.Cliente;
+import com.nirma.clienteservice.model.Cuenta;
 import com.nirma.clienteservice.service.ClienteService;
 
 @RestController
@@ -46,5 +47,24 @@ public class ClienteController {
 		}
 		return ResponseEntity.ok(cliente);
 		
+	}
+	
+	@PostMapping("/cuenta/")
+	public ResponseEntity<Cuenta> saveCuentaCliente(Cuenta cuenta){
+		Cuenta nuevaCuenta=clienteService.saveCuenta(cuenta);
+		if(nuevaCuenta==null) {
+			return ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(nuevaCuenta);
+	}
+	
+	@GetMapping("/cuenta/{idCliente}")
+	private ResponseEntity<List<Cuenta>> cuentasPorCliente(@PathVariable("idCliente") int idCliente){
+		List<Cuenta> cuentas=clienteService.findCuentasXcliente(idCliente);
+		
+		if(cuentas==null) {
+			return ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(cuentas);
 	}
 }

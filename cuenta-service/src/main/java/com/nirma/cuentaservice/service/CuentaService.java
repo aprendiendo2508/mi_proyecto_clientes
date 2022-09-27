@@ -23,4 +23,7 @@ public class CuentaService {
 	public Cuenta save(Cuenta cuenta) {
 		return cuentaRepository.save(cuenta);
 	}
+	public List<Cuenta> findByClienteId(int idCliente){
+		return cuentaRepository.findByIdCliente(idCliente);
+	}
 }
