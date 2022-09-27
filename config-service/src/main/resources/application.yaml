@@ -5,7 +5,7 @@ spring:
   config:
    server:
     git:
-     default-label: config-data
+     default-label: eureka
      uri: https://github.com/aprendiendo2508/mi_proyecto_clientes
      search-paths: config-data
 application:
