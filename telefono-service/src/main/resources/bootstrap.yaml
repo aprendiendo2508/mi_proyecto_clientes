@@ -1,0 +1,8 @@
+spring:
+ application:
+  name: telefono-service
+ cloud:
+  config:
+   enabled: true
+   uri: http://localhost:8090
+  
